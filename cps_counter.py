@@ -20,7 +20,7 @@ class Wait:
         window.update()
 
 
-def onclick(a,b,button,pressed):
+def onclick(x,y,button,pressed):
     if button.left and pressed:
         global x
         global cps
