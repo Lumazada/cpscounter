@@ -3,6 +3,7 @@ from tkinter import Tk, PhotoImage, Label, messagebox
 from pynput import mouse
 from time import sleep
 from threading import Thread
+from keystrokes import Keystroke
 x = 0
 window = Tk()
 cps = tkinter.StringVar()
@@ -30,7 +31,6 @@ def onclick(a,b,button,pressed):
         t.start()
 
 
-
 if __name__ == '__main__':
     cpscounter = mouse.Listener(on_click=onclick)
     cpscounter.start()
@@ -45,5 +45,21 @@ if __name__ == '__main__':
         icon = PhotoImage(file='mouse.png')
         window.iconphoto(True, icon)
     except Exception:
-        messagebox.showinfo(title="cps_counter",message="No icon for window\n(doesnt affect code)")
+        messagebox.showinfo(title="Cps Counter",message="No icon for window\n(doesnt affect code)")
+    try:
+        if messagebox.askyesno(title="Cps Counter",message="Do you want Keystrokes as well?"):
+            window.geometry("200x200")
+            wkey = Keystroke(window,'w', 60, 0, 'grey','white','black')
+            akey = Keystroke(window,'a', 0, 59, 'grey','white','black')
+            skey = Keystroke(window,'s', 60, 59, 'grey','white','black')
+            dkey = Keystroke(window,'d', 120, 59, 'grey','white','black')
+            window.geometry("180x118")
+            text.config(font=("Arial",15))
+            text.place(x=174,y=0,anchor='ne')
+            cpscount.config(font=("Comic Sans",15),anchor='nw')
+            cpscount.place(x=142,y=30)
+
+    except RuntimeError:
+        pass
+
     window.mainloop()
