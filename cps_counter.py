@@ -20,7 +20,7 @@ class Wait:
         window.update()
 
 
-def onclick(x,y,button,pressed):
+def onclick(a,b,button,pressed):
     if button.left and pressed:
         global x
         global cps
@@ -32,10 +32,8 @@ def onclick(x,y,button,pressed):
 
 
 if __name__ == '__main__':
-    cpscounter = mouse.Listener(on_click=onclick)
-    cpscounter.start()
     window.geometry("100x70")
-    window.title("cps counter")
+    window.title("")
     window.config(bg='grey')
     text = Label(window,text="CPS",font=("Arial",20),fg='green',bg='black')
     text.pack()
@@ -44,7 +42,7 @@ if __name__ == '__main__':
     try:
         icon = PhotoImage(file='mouse.png')
         window.iconphoto(True, icon)
-    except Exception:
+    except tkinter.TclError:
         messagebox.showinfo(title="Cps Counter",message="No icon for window\n(doesnt affect code)")
     try:
         if messagebox.askyesno(title="Cps Counter",message="Do you want Keystrokes as well?"):
@@ -61,5 +59,6 @@ if __name__ == '__main__':
 
     except RuntimeError:
         pass
-
+    cpscounter = mouse.Listener(on_click=onclick)
+    cpscounter.start()
     window.mainloop()
