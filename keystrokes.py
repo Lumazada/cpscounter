@@ -5,14 +5,14 @@ from tkinter import Label
 class Keystroke:
     def onpress(self, key):
         try:
-            if key.char == self.key:
+            if (key.char == self.key) or (key.char == self.key.upper()):
                 self.label.config(bg=self.pressedcolor)
         except AttributeError:
             pass
 
     def onrelease(self, key):
         try:
-            if key.char == self.key:
+            if (key.char == self.key) or (key.char == self.key.upper()):
                 self.label.config(bg=self.bg)
         except AttributeError:
             pass
